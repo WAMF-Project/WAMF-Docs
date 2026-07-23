@@ -1,0 +1,56 @@
+site_name: WAMF Docs
+site_description: Documentation for the Wildlife Activity Monitoring Framework
+site_url: https://docs.wamf.uk
+
+repo_name: WAMF-Project/WAMF
+repo_url: https://github.com/WAMF-Project/WAMF
+
+theme:
+  name: material
+  palette:
+    scheme: slate
+    primary: light blue
+    accent: light blue
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+extra_css:
+  - stylesheets/extra.css
+  
+nav:
+  - Home: index.md
+  - Getting Started:
+      - What is WAMF?: getting-started/what-is-wamf.md
+      - Installation: getting-started/installation.md
+      - Quick Start: getting-started/quick-start.md
+  - User Guide:
+      - Dashboard: user-guide/dashboard.md
+      - Observations: user-guide/observations.md
+      - Species: user-guide/species.md
+      - Media Retention: user-guide/media-retention.md
+  - Deployment:
+      - Docker: deployment/docker.md
+      - Updating: deployment/updating.md
+      - Backups: deployment/backups.md
+  - Developer Guide:
+      - Project Structure: developer-guide/project-structure.md
+      - API: developer-guide/api.md
+      - Abstraction Layer: developer-guide/abstraction-layer.md
+  - Reference:
+      - Configuration: reference/configuration.md
+      - REST API: reference/rest-api.md
+      - FAQ: reference/faq.md
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - tables
+  - fenced_code
+  - codehilite
+
+copyright: Copyright &copy; 2026 WAMF
