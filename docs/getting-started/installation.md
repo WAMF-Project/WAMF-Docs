@@ -2,7 +2,7 @@
 
 WAMF can be deployed in multiple ways depending on your environment and requirements.
 
-This guide provides an overview of the available installation methods.
+This guide provides an overview of the available installation methods. Detailed installation instructions are provided in the relevant deployment guides.
 
 ## Supported Deployment Methods
 
@@ -18,7 +18,7 @@ Benefits include:
 - Consistent deployments
 - Suitable for home servers and virtual machines
 
-See the [Docker Deployment](../deployment/docker.md) guide for details.
+See the [Docker Deployment](../deployment/docker.md) guide for detailed instructions.
 
 ### Native Installation
 
@@ -33,32 +33,38 @@ Benefits include:
 
 Detailed native installation instructions will be provided in a future release.
 
-## System Requirements
+## Requirements
 
-The exact requirements depend on your deployment method and workload.
-
-Minimum requirements:
+### Minimum System Requirements
 
 - Linux operating system
-- Python 3.11 or newer
-- Network connectivity to supported camera and detection systems
-- Sufficient storage for media and observation data
-
-Recommended requirements:
-
+- Python 3.11 or later
 - Multi-core processor
-- 8 GB RAM or more
-- SSD storage
-- Dedicated AI accelerator (optional)
+- 8 GB RAM recommended
+- Sufficient storage for the WAMF database, snapshots and clips
 
-## Before You Begin
+### WAMF v0.4 Dependencies
+
+The current release of WAMF integrates with Frigate for object detection.
 
 Before installing WAMF, ensure you have:
 
-- A supported Linux system
-- Access to a camera or detection source
+- A configured Frigate instance with at least one camera
+- An MQTT broker accessible to both Frigate and WAMF
+- Network access from WAMF to the Frigate API
+- A supported camera stream configured in Frigate
+
+WAMF receives detection events from Frigate over MQTT and retrieves associated media using the Frigate API.
+
+Support for additional detection systems is planned for a future release.
+
+## Before You Begin
+
+Before installing WAMF, you should have:
+
 - Administrative access to the host system
 - Basic familiarity with Docker or Python environments
+- A working Frigate installation
 
 ## Next Steps
 
@@ -67,4 +73,4 @@ Choose an installation method:
 - Docker Deployment
 - Native Installation
 
-Once installed, continue to the Quick Start guide to configure your first WAMF instance.
+Once WAMF is installed, continue to the Quick Start guide to configure your first system.

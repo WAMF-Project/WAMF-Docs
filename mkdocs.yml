@@ -32,7 +32,18 @@ nav:
       - Observations: user-guide/observations.md
       - Species: user-guide/species.md
       - Media Retention: user-guide/media-retention.md
+  - Administration:
+     - Overview: administration/overview.md
+     - System Health: administration/system-health.md
+     - Media Retention: administration/media-retention.md
+     - Species Metadata: administration/species-metadata.md
+     - System Events: administration/system-events.md
+     - Authentication: administration/authentication.md
+     - Configuration Backup: administration/configuration-backup.md
+
   - Deployment:
+      - Frigate Configuration: deployment/frigate.md
+      
       - Docker: deployment/docker.md
       - Updating: deployment/updating.md
       - Backups: deployment/backups.md
@@ -47,10 +58,13 @@ nav:
 
 markdown_extensions:
   - admonition
+  - tables
+  - attr_list
+  - md_in_html
   - toc:
       permalink: true
-  - tables
-  - fenced_code
-  - codehilite
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
 
 copyright: Copyright &copy; 2026 WAMF
