@@ -165,4 +165,4 @@ If no observations appear, check:
 - The configured media and database directories are writable.
 - The classification confidence exceeds the configured threshold.
 
-See the full [Configuration](../deployment/configuration.md) guide for every available setting.
+See the full [Configuration](../reference/configuration.md) guide for every available setting.

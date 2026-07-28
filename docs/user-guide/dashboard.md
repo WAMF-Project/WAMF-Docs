@@ -4,7 +4,7 @@ The WAMF dashboard provides an overview of recent wildlife activity, system stat
 
 It is the main starting point for reviewing what WAMF has detected.
 
-![WAMF dashboard overview](../images/dashboard-overview-placeholder.png)
+<!-- Screenshot: WAMF dashboard overview -->
 
 *Dashboard screenshot to be added.*
 
@@ -34,7 +34,7 @@ Recent observations are displayed as cards containing information such as:
 
 Selecting an observation opens its full details.
 
-![Recent observations](../images/dashboard-recent-observations-placeholder.png)
+<!-- Screenshot: Recent observations -->
 
 *Recent observations screenshot to be added.*
 
@@ -44,7 +44,7 @@ The dashboard may include a summary of the species detected during a selected pe
 
 This provides a quick way to see which species have been most active.
 
-![Species summary](../images/dashboard-species-summary-placeholder.png)
+<!-- Screenshot: Species summary -->
 
 *Species summary screenshot to be added.*
 
@@ -61,7 +61,7 @@ System information may include:
 
 Warnings or errors should be investigated before relying on WAMF to record new observations.
 
-![System status](../images/dashboard-system-status-placeholder.png)
+<!-- Screenshot: System status -->
 
 *System status screenshot to be added.*
 

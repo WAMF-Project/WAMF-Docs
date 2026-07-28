@@ -4,7 +4,7 @@ The Species section groups observations by their identified species.
 
 It provides an overview of the wildlife recorded by WAMF and makes it easier to explore the history of an individual species.
 
-![Species page](../images/species-overview-placeholder.png)
+<!-- Screenshot: Species page -->
 
 *Species page screenshot to be added.*
 
@@ -20,7 +20,7 @@ Each species entry may include:
 - number of observations
 - date of the most recent observation
 
-![Species list](../images/species-list-placeholder.png)
+<!-- Screenshot: Species list -->
 
 *Species list screenshot to be added.*
 
@@ -41,7 +41,7 @@ It may contain:
 - most recent observation
 - recent snapshots and clips
 
-![Species details](../images/species-details-placeholder.png)
+<!-- Screenshot: Species details -->
 
 *Species details screenshot to be added.*
 
@@ -71,7 +71,7 @@ This makes it possible to review:
 - when it was most recently detected
 - changes in activity over time
 
-![Species observation history](../images/species-observations-placeholder.png)
+<!-- Screenshot: Species observation history -->
 
 *Species observation history screenshot to be added.*
 

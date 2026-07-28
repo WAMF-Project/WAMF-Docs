@@ -4,7 +4,7 @@ An observation is a wildlife detection that has been received, classified and st
 
 Each observation may include a snapshot, video clip, species classification and information about when and where the detection occurred.
 
-![Observations page](../images/observations-overview-placeholder.png)
+<!-- Screenshot: Observations page -->
 
 *Observations page screenshot to be added.*
 
@@ -30,7 +30,7 @@ The Observations page displays recorded detections in chronological order, with 
 
 Observation cards provide a compact summary of each detection.
 
-![Observation cards](../images/observation-cards-placeholder.png)
+<!-- Screenshot: Observation cards -->
 
 *Observation cards screenshot to be added.*
 
@@ -51,7 +51,7 @@ It may include:
 - detection timestamp
 - links to related species information
 
-![Observation details](../images/observation-details-placeholder.png)
+<!-- Screenshot: Observation details -->
 
 *Observation details screenshot to be added.*
 
@@ -67,7 +67,7 @@ Depending on the WAMF version, observations may be filtered by criteria such as:
 
 Filters make it easier to locate a particular detection or review activity over a specific period.
 
-![Observation filters](../images/observation-filters-placeholder.png)
+<!-- Screenshot: Observation filters -->
 
 *Observation filtering screenshot to be added.*
 
