@@ -43,7 +43,6 @@ nav:
 
   - Deployment:
       - Frigate Configuration: deployment/frigate.md
-      
       - Docker: deployment/docker.md
       - Updating: deployment/updating.md
       - Backups: deployment/backups.md
