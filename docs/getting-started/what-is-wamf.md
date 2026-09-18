@@ -1,88 +1,81 @@
 # What is WAMF?
 
-The Wildlife Activity Monitoring Framework (WAMF) is an open-source platform for monitoring, identifying, recording and analysing wildlife activity using cameras and artificial intelligence.
+WAMF stands for **Wildlife Activity Monitoring Framework**.
 
-WAMF is designed for hobbyists, wildlife enthusiasts, researchers and conservation projects that want to collect structured wildlife observations from cameras without manually reviewing large volumes of footage.
+It is an open-source platform designed to receive wildlife detections from camera systems, classify detected species and build a searchable record of wildlife activity.
 
-## Overview
+WAMF is designed for self-hosted environments such as home labs, wildlife monitoring systems and dedicated observation stations.
 
-WAMF sits between a wildlife camera system and the user.
+## WAMF v0.4.0
 
-It receives wildlife detections from supported detection systems, classifies species, stores observations and presents the results through a web-based interface.
+WAMF v0.4.0 is the current released version.
 
-The platform is designed to automate the process of turning camera detections into useful wildlife records.
+In this release, Frigate provides the object detection layer.
 
-## How WAMF Works
+The basic processing flow is:
 
-A typical workflow looks like this:
+```text
+Camera
+  ↓
+Frigate
+  ↓
+MQTT detection event
+  ↓
+WAMF
+  ↓
+Species classification
+  ↓
+Observation database and archived media
+  ↓
+WAMF web interface
+```
 
-1. A camera captures wildlife activity.
-2. A detection system identifies an object of interest.
-3. WAMF receives the detection event.
-4. WAMF classifies the species using AI models.
-5. The observation is stored in the database.
-6. Associated media is retained according to configured policies.
-7. Results become available through the dashboard and API.
+Frigate detects the `bird` object and publishes the detection event over MQTT.
 
-This allows users to focus on wildlife observations rather than manually processing footage.
+WAMF receives the event, retrieves the associated media from the Frigate HTTP API and performs species classification.
 
-## Key Features
+The resulting observation is stored in the WAMF database together with its associated archived media.
 
-### Species Classification
+## What WAMF Provides
 
-WAMF can identify wildlife species from captured images and store both common and scientific names.
+WAMF v0.4.0 provides:
 
-### Observation Database
+- Bird detection event processing
+- AI-powered species classification
+- Observation history
+- Snapshot and clip archiving
+- Media retention management
+- Species metadata
+- Administrative tools
+- System health information
+- REST API access
 
-All observations are stored in a searchable database, allowing long-term monitoring of wildlife activity.
+## What Frigate Provides
 
-### Species Metadata
+Frigate remains responsible for:
 
-Additional species information can be automatically retrieved and displayed to provide context for observations.
+- Camera stream ingestion
+- Object detection
+- Tracking the `bird` object
+- Publishing detection events over MQTT
+- Providing event media through its HTTP API
 
-### Media Management
+WAMF does not control or require a particular Frigate detector.
 
-Snapshots and clips can be retained according to configurable policies, helping balance storage usage against historical record keeping.
+The Frigate installation may use any detector supported by Frigate and suitable for the host hardware.
 
-### Web Dashboard
+## Deployment
 
-The built-in dashboard provides access to observations, species information, system status and administrative tools.
+Docker is the recommended deployment method for WAMF v0.4.0.
 
-### REST API
+The official container image is published through the GitHub Container Registry.
 
-WAMF exposes APIs that allow other applications and services to integrate with wildlife observations and system data.
+See [Installation](installation.md) for deployment options or go directly to [Docker Deployment](../deployment/docker.md).
 
-## Design Goals
+## Future Development
 
-WAMF is built around several core principles:
+WAMF is under active development.
 
-- Open source and self-hosted
-- Wildlife-focused rather than general surveillance
-- Modular and extensible architecture
-- Resource efficient deployment
-- Support for a wide range of hardware
-- Long-term observation and data collection
+Future releases are intended to expand the platform beyond the current Frigate-based detection pipeline and provide greater flexibility for wildlife monitoring systems.
 
-## Current Status
-
-WAMF is currently in active development.
-
-The current focus is the v0.4 platform stabilisation release, which includes deployment validation, documentation improvements and long-term testing.
-
-Future development will focus on abstraction layers, distributed edge devices and support for additional capture and detection systems.
-
-## Typical Use Cases
-
-WAMF can be used for:
-
-- Garden bird monitoring
-- Wildlife feeding stations
-- Nest box observation
-- Camera trap projects
-- Educational wildlife monitoring
-- Citizen science projects
-- Small-scale conservation initiatives
-
-## Learn More
-
-To get started with WAMF, continue to the Installation guide.
+Features described as future development are not part of WAMF v0.4.0 unless specifically documented as such.

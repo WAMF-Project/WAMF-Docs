@@ -1,14 +1,19 @@
 # Quick Start
 
-This guide walks through the minimum steps required to connect WAMF to an existing Frigate installation and begin recording wildlife observations.
+This guide covers the minimum steps required to connect a new WAMF v0.4.0 installation to Frigate and begin recording bird observations.
 
-Before continuing, make sure WAMF has been installed and Frigate is already detecting birds.
+Before continuing:
 
-See [Installation](installation.md) for deployment requirements and installation options.
+- WAMF should be installed and running.
+- Frigate should already be detecting the `bird` object.
+- Frigate and WAMF should have access to the same MQTT broker.
+- WAMF must be able to access the Frigate HTTP API.
+
+See [Installation](installation.md) if WAMF has not yet been installed.
 
 ## 1. Check Frigate
 
-WAMF currently receives detection events from Frigate over MQTT and retrieves media through the Frigate HTTP API.
+WAMF v0.4.0 receives detection events from Frigate over MQTT and retrieves associated media through the Frigate HTTP API.
 
 Confirm that:
 
@@ -16,153 +21,142 @@ Confirm that:
 - MQTT is enabled in Frigate.
 - The required camera is configured in Frigate.
 - The camera is tracking the `bird` object.
-- Snapshots and recordings are enabled.
+- Snapshots are available through the Frigate API.
 - The Frigate HTTP API is accessible from the WAMF host.
 
-The camera name used in WAMF must exactly match the camera name configured in Frigate.
+The camera name configured in WAMF must exactly match the camera name configured in Frigate.
 
-## 2. Create the WAMF Configuration
+See [Frigate Configuration](../deployment/frigate.md) for more information.
 
-Copy the example configuration file into the WAMF configuration directory if this was not already done during installation.
+## 2. Open WAMF
 
-Open `config/config.yml` and configure the Frigate connection:
+Open the WAMF web interface:
 
-```yaml
-frigate:
-  frigate_url: http://192.168.1.100:5000
-  mqtt_server: 192.168.1.100
-  mqtt_port: 1883
-  mqtt_auth: false
-  mqtt_use_tls: false
-  main_topic: frigate
-  camera:
-    - bird_camera
-  object:
-    - bird
+```text
+http://<wamf-host>:7767
 ```
 
-Replace the example addresses and camera name with values from your own Frigate installation.
+For a new installation, WAMF automatically creates the files required for initial configuration.
 
-For MQTT brokers that require authentication:
+If valid administrator credentials do not already exist, WAMF generates an initial administrator password during bootstrap.
 
-```yaml
-frigate:
-  mqtt_auth: true
-  mqtt_username: "<mqtt username>"
-  mqtt_password: "<mqtt password>"
-```
-
-## 3. Configure Classification
-
-Set the classification model and minimum confidence threshold:
-
-```yaml
-classification:
-  model: model.tflite
-  threshold: 0.7
-```
-
-The threshold is expressed as a value between `0` and `1`.
-
-A threshold of `0.7` requires at least 70% classification confidence before WAMF accepts the result.
-
-## 4. Configure Storage
-
-Set the database and media locations:
-
-```yaml
-storage:
-  database_path: ./data/speciesid.db
-
-media:
-  snapshots_path: ./media/wamf/snapshots
-  clips_path: ./media/wamf/clips
-```
-
-Make sure the WAMF process has permission to create and modify files in these directories.
-
-## 5. Configure Administrator Access
-
-Generate a session secret:
+For a Docker installation, the temporary password can be found in the container logs:
 
 ```bash
-python -c "import secrets; print(secrets.token_hex(32))"
+docker compose logs wamf
 ```
 
-Generate an administrator password hash:
+Sign in using the generated administrator password.
 
-```bash
-python -c "from werkzeug.security import generate_password_hash; print(generate_password_hash('change-me'))"
+Change the temporary password after logging in.
+
+## 3. Configure Frigate and MQTT
+
+A new WAMF installation starts in setup mode until the required external services have been configured.
+
+Open the WAMF configuration page and enter the settings for your environment.
+
+The important Frigate and MQTT settings are:
+
+- Frigate HTTP API address
+- MQTT broker address
+- MQTT port
+- MQTT authentication settings, if required
+- MQTT topic
+- Frigate camera name
+
+A typical installation uses:
+
+```text
+MQTT port: 1883
+MQTT topic: frigate
 ```
 
-Replace `change-me` with the password you want to use.
+Use the actual values configured for your environment.
 
-Add the generated values to the configuration:
+The Frigate camera name entered in WAMF must exactly match the identifier used by Frigate.
+
+For example, if the Frigate configuration contains:
 
 ```yaml
-admin:
-  auth_enabled: true
-  session_secret: "<generated session secret>"
-  session_cookie_samesite: Lax
-  session_cookie_secure: false
-  password_hash: "<generated password hash>"
+cameras:
+  bird_camera:
 ```
 
-Keep the session secret stable across restarts. Changing it will invalidate existing login sessions.
+the WAMF camera name must be:
 
-## 6. Start WAMF
-
-Start WAMF using the deployment method selected during installation.
-
-For a native installation:
-
-```bash
-python run.py
+```text
+bird_camera
 ```
 
-For Docker:
+## 4. Save the Configuration
 
-```bash
-docker compose up -d
-```
+Save the WAMF configuration after entering the required settings.
 
-Check the application logs if WAMF does not start successfully.
+WAMF will indicate when a restart is required for configuration changes to take effect.
 
-## 7. Open the Dashboard
+Use the WAMF restart control when prompted.
 
-By default, the WAMF web interface listens on port `7766`.
+After restarting, WAMF should leave setup mode and connect to the configured services.
+
+## 5. Check System Health
+
+Open the WAMF administration interface and check the system health information.
+
+Confirm that the required WAMF services are operating normally and that the MQTT connection is available.
+
+If WAMF cannot communicate with Frigate or MQTT, recheck:
+
+- Hostnames or IP addresses
+- MQTT port
+- MQTT authentication settings
+- Frigate HTTP API address
+- Network connectivity between the systems
+
+## 6. Test a Detection
+
+Trigger or wait for a bird detection on the Frigate camera configured in WAMF.
+
+For a successful detection, WAMF should:
+
+1. Receive the Frigate event over MQTT.
+2. Retrieve the event snapshot from the Frigate API.
+3. Classify the bird species.
+4. Store the observation in the WAMF database.
+5. Archive the associated media.
+6. Display the observation in the WAMF dashboard.
+
+The first classification may take slightly longer while the classifier and supporting components initialise.
+
+## 7. Check the Dashboard
 
 Open:
 
 ```text
-http://<wamf-host>:7766
+http://<wamf-host>:7767
 ```
 
-Sign in using the administrator password used when generating the password hash.
+A successfully processed detection should appear in the WAMF interface.
 
-## 8. Test a Detection
-
-Trigger or wait for a bird detection on the configured Frigate camera.
-
-WAMF should:
-
-1. Receive the Frigate event over MQTT.
-2. Retrieve the associated media from Frigate.
-3. Classify the detected bird.
-4. Store the observation in its database.
-5. Display the observation in the dashboard.
-
-The first classification may take slightly longer while the model and supporting components initialise.
+You can then use the dashboard and observation views to review detections and identified species.
 
 ## Troubleshooting
 
 If no observations appear, check:
 
-- The Frigate camera name matches the name in `config.yml`.
-- Frigate is tracking the `bird` object.
-- WAMF can connect to the MQTT broker.
+- The Frigate camera name exactly matches the camera configured in WAMF.
+- Frigate is detecting the `bird` object.
+- WAMF is connected to the MQTT broker.
+- WAMF is using the same MQTT topic as Frigate.
 - WAMF can access the Frigate HTTP API.
-- The configured media and database directories are writable.
-- The classification confidence exceeds the configured threshold.
+- Frigate can provide the event snapshot.
+- WAMF storage directories are writable.
+- The classification result meets the configured confidence threshold.
 
-See the full [Configuration](../reference/configuration.md) guide for every available setting.
+For Docker installations, check the WAMF logs with:
+
+```bash
+docker compose logs -f wamf
+```
+
+See the full [Configuration](../reference/configuration.md) guide for configuration details.

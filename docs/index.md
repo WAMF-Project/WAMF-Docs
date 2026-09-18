@@ -4,32 +4,54 @@ WAMF is an open-source platform for monitoring, identifying and recording wildli
 
 ## Current Status
 
-!!! info "Development Status"
+!!! info "Current Release"
 
-    WAMF is currently in active development.
+    The current release is **WAMF v0.4.0**.
 
-    The current milestone is **v0.4**, focused on platform stabilisation, deployment testing and documentation.
+    WAMF v0.4.0 provides a stable Frigate-based detection pipeline, species classification, observation storage, archived media and a web-based administration interface.
+
+    Docker is the recommended deployment method for v0.4.0.
 
 ## Features
 
-- Wildlife detection using Frigate
-- Species classification
+- Wildlife detection events received from Frigate
+- AI-powered bird species classification
 - Observation database
+- Snapshot and clip archiving
 - Media retention management
 - Species metadata enrichment
 - Administrative dashboard
+- System health monitoring
 - REST API
+
+## How WAMF Works
+
+WAMF v0.4.0 uses Frigate as its detection source.
+
+When Frigate detects a bird, it publishes the event over MQTT. WAMF receives the event, retrieves the associated media from Frigate, performs species classification and stores the resulting observation.
+
+The observation and archived media can then be viewed through the WAMF web interface.
+
+## Getting Started
+
+New users should begin with:
+
+1. [What is WAMF?](getting-started/what-is-wamf.md)
+2. [Installation](getting-started/installation.md)
+3. [Quick Start](getting-started/quick-start.md)
+
+For the recommended container deployment, see [Docker Deployment](deployment/docker.md).
 
 ## Documentation Sections
 
 - **Getting Started** - installation and first steps
 - **User Guide** - using WAMF day-to-day
+- **Administration** - configuration, health and maintenance
 - **Deployment** - running WAMF in production
 - **Developer Guide** - architecture and development
 - **Reference** - configuration and API details
 
 ## Project Links
 
-- GitHub Repository
-- Issue Tracker
-- Project Website
+- [WAMF on GitHub](https://github.com/WAMF-Project/WAMF)
+- [WAMF Documentation](https://docs.wamf.uk)
