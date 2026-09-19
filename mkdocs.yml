@@ -1,4 +1,4 @@
-site_name: WAMF Docs
+site_name: WAMF Documentation
 site_description: Documentation for the Wildlife Activity Monitoring Framework
 site_url: https://docs.wamf.uk
 
@@ -7,10 +7,11 @@ repo_url: https://github.com/WAMF-Project/WAMF
 
 theme:
   name: material
+  logo: assets/images/WAMF-Header.png
+  favicon: assets/icons/favicon.svg
   palette:
     scheme: slate
-    primary: light blue
-    accent: light blue
+    
   features:
     - navigation.sections
     - navigation.expand

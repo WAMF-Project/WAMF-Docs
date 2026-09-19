@@ -1,1 +1,313 @@
-/* Custom WAMF documentation styling */
+/* =========================================================
+   WAMF Documentation Theme
+   ========================================================= */
+
+/* WAMF design tokens */
+
+:root {
+  --wamf-bg: #030f2a;
+  --wamf-panel: #081633;
+  --wamf-panel-2: #0d1d3f;
+  --wamf-border: #1a2747;
+  --wamf-text: #ffffff;
+  --wamf-muted: #a8b3cf;
+  --wamf-accent: #00a3ff;
+  --wamf-live: #57c84d;
+  --wamf-shadow: 0 24px 80px rgba(0, 0, 0, 0.25);
+
+  /* Material theme variables */
+  --md-primary-fg-color: #030f2a;
+  --md-primary-fg-color--light: #081633;
+  --md-primary-fg-color--dark: #030f2a;
+
+  --md-accent-fg-color: #00a3ff;
+
+  --md-default-bg-color: #030f2a;
+  --md-default-fg-color: #ffffff;
+  --md-default-fg-color--light: #a8b3cf;
+  --md-default-fg-color--lighter: #71809f;
+  --md-default-fg-color--lightest: #1a2747;
+
+  --md-typeset-color: #dbe4f4;
+  --md-typeset-a-color: #00a3ff;
+
+  --md-code-bg-color: #081633;
+  --md-code-fg-color: #dbe4f4;
+}
+
+
+/* =========================================================
+   Page
+   ========================================================= */
+
+body {
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  background: var(--wamf-bg);
+}
+
+.md-main {
+  background:
+    radial-gradient(
+      circle at 15% 0%,
+      rgba(0, 163, 255, 0.08),
+      transparent 28rem
+    );
+}
+
+
+/* =========================================================
+   Header
+   ========================================================= */
+
+.md-header {
+  min-height: 4.2rem;
+  background: rgba(3, 15, 42, 0.86);
+  border-bottom: 1px solid var(--wamf-border);
+  backdrop-filter: blur(14px);
+  box-shadow: none;
+}
+
+.md-header__title {
+  color: var(--wamf-text);
+  font-weight: 700;
+  margin-left: 0.75rem;
+}
+
+.md-header__button {
+  color: var(--wamf-muted);
+}
+
+.md-header__button:hover {
+  color: var(--wamf-text);
+}
+
+
+/* =========================================================
+   Search
+   ========================================================= */
+
+.md-search__form {
+  background: var(--wamf-panel);
+  border: 1px solid var(--wamf-border);
+  border-radius: 0.9rem;
+}
+
+.md-search__input {
+  color: var(--wamf-text);
+}
+
+.md-search__input::placeholder {
+  color: var(--wamf-muted);
+}
+
+
+/* =========================================================
+   Navigation
+   ========================================================= */
+
+.md-nav {
+  color: var(--wamf-muted);
+}
+
+/* Navigation and table-of-contents headings */
+
+.md-nav__title {
+  background: linear-gradient(
+    180deg,
+    var(--wamf-panel),
+    var(--wamf-panel-2)
+  ) !important;
+
+  border: 1px solid var(--wamf-border);
+  border-radius: 0.6rem;
+  color: var(--wamf-text);
+  box-shadow: none;
+}
+
+.md-nav__link:hover {
+  color: var(--wamf-text);
+}
+
+.md-nav__link--active {
+  color: var(--wamf-accent);
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   Main documentation content
+   ========================================================= */
+
+.md-typeset {
+  color: #dbe4f4;
+  font-size: 0.82rem;
+  line-height: 1.8;
+}
+
+.md-typeset h1 {
+  color: var(--wamf-text);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.md-typeset h2 {
+  color: var(--wamf-text);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.md-typeset h3,
+.md-typeset h4 {
+  color: var(--wamf-text);
+}
+
+.md-typeset a {
+  color: var(--wamf-accent);
+}
+
+.md-typeset a:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   Code
+   ========================================================= */
+
+.md-typeset code {
+  border-radius: 0.4rem;
+}
+
+.md-typeset pre > code {
+  background: var(--wamf-panel);
+}
+
+.highlight {
+  border: 1px solid var(--wamf-border);
+  border-radius: 0.9rem;
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   Tables
+   ========================================================= */
+
+.md-typeset table:not([class]) {
+  border: 1px solid var(--wamf-border);
+  border-radius: 0.9rem;
+  overflow: hidden;
+}
+
+.md-typeset table:not([class]) th {
+  background: var(--wamf-panel-2);
+  color: var(--wamf-text);
+}
+
+.md-typeset table:not([class]) td {
+  border-color: var(--wamf-border);
+}
+
+
+/* =========================================================
+   Admonitions
+   ========================================================= */
+
+.md-typeset .admonition,
+.md-typeset details {
+  background: linear-gradient(
+    180deg,
+    var(--wamf-panel),
+    var(--wamf-panel-2)
+  );
+
+  border-radius: 1rem;
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   Horizontal rules
+   ========================================================= */
+
+.md-typeset hr {
+  border-bottom-color: var(--wamf-border);
+}
+
+
+/* =========================================================
+   Screenshot treatment
+   Matches the main WAMF website
+   ========================================================= */
+
+.md-typeset img {
+  border-radius: 24px;
+}
+
+.md-typeset img.wamf-screenshot {
+  display: block;
+  width: 100%;
+  margin: 2rem auto;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================================
+   Footer
+   ========================================================= */
+
+.md-footer {
+  background: var(--wamf-bg);
+  border-top: 1px solid var(--wamf-border);
+}
+
+.md-footer-meta {
+  background: var(--wamf-bg);
+  color: var(--wamf-muted);
+}
+
+
+/* =========================================================
+   Back-to-top button
+   ========================================================= */
+
+.md-top {
+  background: var(--wamf-panel);
+  border: 1px solid var(--wamf-border);
+  color: var(--wamf-text);
+  border-radius: 0.9rem;
+}
+
+/* WAMF header branding */
+
+
+
+.md-header__inner {
+  min-height: 4.2rem;
+}
+
+.md-header__button.md-logo {
+  padding: 0.35rem 0.75rem 0.35rem 0;
+  margin: 0;
+}
+
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  width: auto;
+  height: 3.4rem;
+  max-width: none;
+}
+
