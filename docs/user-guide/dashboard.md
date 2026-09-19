@@ -1,96 +1,83 @@
 # Dashboard
 
-The WAMF dashboard provides an overview of recent wildlife activity, system status and recorded observations.
+The WAMF dashboard provides an overview of recent wildlife activity and
+recorded detections.
 
-It is the main starting point for reviewing what WAMF has detected.
+It is the main starting point for seeing what WAMF has recently detected.
 
-<!-- Screenshot: WAMF dashboard overview -->
+<figure>
+  <img
+    src="../../assets/images/dashboard-overview.png"
+    alt="WAMF v0.4.0 Dashboard Overview"
+    class="wamf-screenshot"
+  >
+  <figcaption>WAMF v0.4.0 Dashboard Overview</figcaption>
+</figure>
 
-*Dashboard screenshot to be added.*
+## Overview
 
-## Dashboard Overview
+The **Overview** page brings together recent detection information for the
+selected date.
 
-The dashboard brings together the most useful information from the WAMF system, including:
+The date selector at the top of the page can be used to view activity from
+a different day.
 
-- recent observations
-- detected species
-- observation counts
-- classification confidence
-- system health
-- storage and retention status
+The Overview includes:
 
-The exact information shown may vary depending on the WAMF version and enabled features.
+- recent detections
+- the latest visitor
+- a detection summary
 
-## Recent Observations
+## Recent Detections
 
-Recent observations are displayed as cards containing information such as:
+The **Recent Detections** section displays the latest wildlife detections as
+cards.
 
-- species name
-- classification confidence
-- camera name
-- date and time
-- snapshot
-- available video clip
+Each card shows the detected species, classification confidence, detection
+time and snapshot.
 
-Selecting an observation opens its full details.
+This provides a quick visual overview of recent activity without having to
+browse the complete detection history.
 
-<!-- Screenshot: Recent observations -->
+## Latest Visitor
 
-*Recent observations screenshot to be added.*
+The **Latest Visitor** section shows the most recent detection for the
+selected date.
 
-## Species Summary
+It includes the species, detection time and camera that recorded the
+observation.
 
-The dashboard may include a summary of the species detected during a selected period.
+## Detection Summary
 
-This provides a quick way to see which species have been most active.
+The **Detection Summary** provides an overview of detection activity for the
+selected date.
 
-<!-- Screenshot: Species summary -->
-
-*Species summary screenshot to be added.*
-
-## System Status
-
-System information may include:
-
-- WAMF service status
-- database status
-- available storage
-- configured camera status
-- retention status
-- external integration status
-
-Warnings or errors should be investigated before relying on WAMF to record new observations.
-
-<!-- Screenshot: System status -->
-
-*System status screenshot to be added.*
+Use this section alongside the recent detections to get a quick picture of
+wildlife activity during the selected period.
 
 ## Navigation
 
-The main navigation provides access to other areas of WAMF, including:
+The main WAMF navigation provides access to:
 
-- Dashboard
-- Observations
-- Species
-- Live View
-- System
-- Administration
+- **Overview** — summary of detections for the selected date.
+- **Recent Feed** — recent WAMF detections.
+- **Activity** — recorded wildlife activity.
+- **Live View** — the configured live camera view.
+- **Admin** — WAMF administration and system information.
 
-The available options may depend on the WAMF version and the permissions of the current user.
+## Live Status
 
-## Refreshing Data
+A **Live** indicator is displayed alongside Recent Detections while the
+dashboard is receiving live updates.
 
-Most dashboard information is updated automatically.
-
-Refresh the page if:
-
-- a recent detection has not appeared
-- configuration changes have been made
-- WAMF has recently restarted
-- system status information appears out of date
+New detections can therefore appear on the dashboard without manually
+refreshing the page.
 
 ## Next Steps
 
-- Open **Observations** to browse and filter recorded detections.
-- Open **Species** to review activity for an individual species.
-- Open **Live View** to view the configured camera stream.
+Use **Recent Feed** to browse recent detections, **Activity** to explore
+recorded wildlife activity, or **Live View** to view the configured camera
+stream.
+
+System health, storage and retention information is available separately
+through the **Admin** interface.

@@ -1,115 +1,115 @@
 # Species
 
-The Species section groups observations by their identified species.
+WAMF provides a species page for wildlife identified in recorded detections.
 
-It provides an overview of the wildlife recorded by WAMF and makes it easier to explore the history of an individual species.
+The species page combines information about the species with detection
+statistics, activity and the individual detections recorded by WAMF.
 
-<!-- Screenshot: Species page -->
+<figure>
+  <img
+    src="../../assets/images/species-details.png"
+    alt="WAMF v0.4.0 Species Details"
+    class="wamf-screenshot"
+  >
+  <figcaption>Species information and detection history in WAMF v0.4.0</figcaption>
+</figure>
 
-*Species page screenshot to be added.*
+## Species Information
 
-## Species List
+The top of the species page identifies the species and displays available
+reference information.
 
-The species list displays the species identified in recorded observations.
-
-Each species entry may include:
-
-- common name
-- scientific name
-- thumbnail image
-- number of observations
-- date of the most recent observation
-
-<!-- Screenshot: Species list -->
-
-*Species list screenshot to be added.*
-
-Select a species to open its species details page.
-
-## Species Details
-
-The species details page combines species information with observations recorded by WAMF.
-
-It may contain:
+This can include:
 
 - common name
 - scientific name
-- species image
-- description
-- observation count
-- first recorded observation
-- most recent observation
-- recent snapshots and clips
+- a detection snapshot
+- species description
+- reference image
+- link to external reference information
 
-<!-- Screenshot: Species details -->
-
-*Species details screenshot to be added.*
+Species metadata supplements WAMF's own detection data and helps provide
+context when reviewing an identified species.
 
 ## Species Metadata
 
-WAMF can retrieve additional information about identified species.
+WAMF can retrieve additional information about identified species, including
+a description and reference image.
 
-Metadata may include:
+Metadata requires Internet access when it is retrieved, but WAMF can continue
+processing and recording detections if additional species information is
+unavailable.
 
-- a short description
-- a representative image
-- scientific classification
-- links to external reference material
+Species metadata can be reviewed and refreshed from
+**Admin → Species**.
 
-Metadata availability depends on the configured provider and Internet access.
+## Detection Statistics
 
-WAMF can continue recording observations when metadata is unavailable.
+The species page provides statistics for the selected date, including:
 
-## Observation History
+- number of detections
+- first detection
+- last detection
+- peak activity hour
 
-Each species page includes observations associated with that species.
+These provide a quick summary of when the species was active during the
+selected day.
 
-This makes it possible to review:
+## Activity by Hour
 
-- how frequently the species appears
-- which cameras recorded it
-- when it was most recently detected
-- changes in activity over time
+The **Activity By Hour** chart shows how detections of the species were
+distributed throughout the selected day.
 
-<!-- Screenshot: Species observation history -->
+This makes it easier to see periods when the species was most active.
 
-*Species observation history screenshot to be added.*
+## Detection History
+
+Individual detections for the species are displayed below the activity
+summary.
+
+Each detection card can include:
+
+- snapshot
+- common species name
+- classification confidence
+- detection time
+- camera
+
+This provides a visual history of the detections WAMF recorded for that
+species.
 
 ## Common and Scientific Names
 
-WAMF stores both common and scientific species names where available.
+WAMF records both common and scientific species names where available.
 
 For example:
 
 | Common name | Scientific name |
 |---|---|
-| Blue Tit | *Cyanistes caeruleus* |
+| Eurasian Blue Tit | *Cyanistes caeruleus* |
 | European Robin | *Erithacus rubecula* |
 | Great Tit | *Parus major* |
 
-Scientific names provide a consistent identifier where common names differ between countries or regions.
+Scientific names provide a consistent identifier where common names may vary
+between countries or regions.
 
 ## Missing Species Information
 
-A species may appear without a description or thumbnail when:
+A species may appear without additional metadata when the information has not
+yet been retrieved or a metadata lookup was unsuccessful.
 
-- Internet access is unavailable
-- the metadata provider cannot find a match
-- the species name is incomplete
-- the metadata request failed
-- metadata has not yet been refreshed
+The WAMF detection data remains available even when additional species
+metadata is missing.
 
-The observation itself remains available even when the additional species metadata is missing.
+Missing metadata can be reviewed and refreshed from
+**Admin → Species**.
 
 ## Classification Accuracy
 
-Species pages are created from classifier results.
+Species pages are based on WAMF classification results.
 
-An incorrect classification may therefore place an observation under the wrong species.
+A higher confidence value indicates a stronger classification result, but
+does not guarantee that the identification is correct.
 
-Review the associated snapshot or video when:
-
-- the confidence value is low
-- the species is unusual for the location
-- two species have similar markings
-- the subject is partly hidden or blurred
+When an identification appears unusual, use the original detection snapshot
+and the species reference information to help compare the result.

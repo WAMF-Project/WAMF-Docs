@@ -4,27 +4,29 @@
 
 No.
 
-Frigate performs object detection.
+In WAMF v0.4.0, Frigate provides object detection and detection events.
 
-WAMF receives Frigate events and adds wildlife-specific classification, storage, analytics and management.
+WAMF receives those events and adds wildlife-specific classification,
+observation storage, media archiving, analytics and management.
 
 ---
 
 ## Does WAMF perform object detection?
 
-No.
+Not in the current release.
 
-Object detection is currently provided by Frigate.
+WAMF v0.4.0 uses detection events provided by Frigate. WAMF then performs
+additional wildlife classification on those detections.
 
 ---
 
 ## Does WAMF require an Internet connection?
 
-No.
+WAMF's core detection processing and local web interface can operate on your
+local network without an Internet connection.
 
-WAMF is designed to run entirely on your local network.
-
-An Internet connection is only required for optional features such as species metadata.
+Some optional functionality, such as retrieving species metadata, requires
+Internet access.
 
 ---
 
@@ -34,21 +36,34 @@ Yes.
 
 Multiple Frigate cameras can be configured in `config.yml`.
 
+Camera names configured in WAMF must match the corresponding Frigate camera
+names exactly.
+
+See the [Configuration Reference](configuration.md) for details.
+
 ---
 
 ## Can WAMF identify animals other than birds?
 
-The current release is primarily designed for bird monitoring.
+WAMF v0.4.0 is primarily designed for bird monitoring.
 
-Support for additional wildlife may be added in future releases.
+Support for additional wildlife is planned for future development.
 
 ---
 
 ## Where are observations stored?
 
-Observations are stored in the WAMF SQLite database located in the `data` directory.
+Observations are stored in the WAMF SQLite database.
 
-Associated media is stored in the `media` directory.
+By default, the database is stored in:
+
+```text
+data/speciesid.db
+```
+
+Associated snapshots and clips are stored under the `media` directory.
+
+These locations can be changed in the WAMF configuration.
 
 ---
 
@@ -56,9 +71,15 @@ Associated media is stored in the `media` directory.
 
 Yes.
 
-Back up the `config`, `data` and `media` directories.
+A WAMF backup should include the persistent:
 
-See the **Backup & Restore** guide for more information.
+- `config`
+- `data`
+- `media`
+
+directories.
+
+See [Backups](../deployment/backups.md) for the complete backup procedure.
 
 ---
 
@@ -66,11 +87,15 @@ See the **Backup & Restore** guide for more information.
 
 Check that:
 
-- Frigate is running.
+- Frigate is running and accessible from WAMF.
 - MQTT is configured correctly.
-- Camera names match your Frigate configuration.
-- The configured object type is being detected.
-- WAMF can access the Frigate API.
+- WAMF is connected to the MQTT broker.
+- Camera names in WAMF exactly match the corresponding Frigate camera names.
+- Frigate is detecting the configured object type.
+- WAMF can access the Frigate HTTP API.
+
+The **Admin Dashboard** and **System Logs** can provide additional information
+about Frigate, MQTT and processing problems.
 
 ---
 
@@ -78,4 +103,5 @@ Check that:
 
 Yes.
 
-WAMF is released as an open-source project.
+WAMF is an open-source project. The source code is available from the
+WAMF Project repository on GitHub.

@@ -30,17 +30,18 @@ nav:
       - Quick Start: getting-started/quick-start.md
   - User Guide:
       - Dashboard: user-guide/dashboard.md
-      - Observations: user-guide/observations.md
+      - Daily Summary: user-guide/daily-summary.md
+      - Recent Feed: user-guide/recent-feed.md
+      - Activity: user-guide/activity.md
+      - Live View: user-guide/live-view.md
       - Species: user-guide/species.md
       - Media Retention: user-guide/media-retention.md
   - Administration:
      - Overview: administration/overview.md
-     - System Health: administration/system-health.md
-     - Media Retention: administration/media-retention.md
      - Species Metadata: administration/species-metadata.md
-     - System Events: administration/system-events.md
+     - System Logs: administration/system-events.md
      - Authentication: administration/authentication.md
-     - Configuration Backup: administration/configuration-backup.md
+     - Configuration: administration/configuration.md
 
   - Deployment:
       - Frigate Configuration: deployment/frigate.md
@@ -49,8 +50,8 @@ nav:
       - Backups: deployment/backups.md
   - Developer Guide:
       - Project Structure: developer-guide/project-structure.md
-      - API: developer-guide/api.md
-      - Abstraction Layer: developer-guide/abstraction-layer.md
+     
+      
   - Reference:
       - Configuration: reference/configuration.md
       - REST API: reference/rest-api.md
