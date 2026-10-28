@@ -52,6 +52,8 @@ bridge:
 webui:
   port: 7767
   host: 0.0.0.0
+  # Optional external origin for the first-run setup link.
+  # public_base_url: https://wamf.example
 
 live_view:
   url: http://
@@ -166,7 +168,7 @@ monitoring platforms, or other software capable of receiving event data.
 ```yaml
 bridge:
   enabled: false
-  events_url: events_url: http://<external-host>:5000/api/events
+  events_url: http://<external-host>:5000/api/events
   timeout_seconds: 1
   health_check_interval_seconds: 60
 ```
@@ -188,6 +190,8 @@ The `webui` section configures the built-in WAMF web interface.
 webui:
   port: 7767
   host: 0.0.0.0
+  # Optional external origin for the first-run setup link.
+  # public_base_url: https://wamf.example
 ```
 
 | Setting | Required | Description |
@@ -196,6 +200,22 @@ webui:
 | `host` | Yes | Network interface to bind the web server to. Use `0.0.0.0` to listen on all interfaces. |
 
 ---
+
+### Public setup-link origin
+
+`webui.public_base_url` is optional. It controls the origin printed in the
+first-run administrator setup link, for example `https://wamf.example` or
+`http://localhost:17767`. It must use HTTP or HTTPS and contain no credentials,
+path prefix, query or fragment. Subpath proxy deployments are not supported by
+this setting.
+
+Without it, WAMF prints `127.0.0.1` and the configured web port. For access from
+another machine, use the reachable host and published port while retaining the
+setup path and token fragment. Use HTTPS or a trusted tunnel for remote setup.
+
+This setting does not change the listening address, enable TLS, configure
+trusted-proxy parsing or restrict network access. WAMF does not derive it from
+request headers. See [Authentication](../administration/authentication.md).
 
 ## Live View
 
@@ -308,8 +328,18 @@ admin:
 | `session_cookie_secure` | No | Only send the session cookie over HTTPS. Set to `true` when using HTTPS. |
 | `password_hash` | Yes | Werkzeug password hash for the administrator account. |
 
-The administrator password and session secret are normally created during
-the WAMF initial setup process.
+On a fresh authentication-enabled installation, startup provides a private,
+single-use setup link. The administrator chooses a password within 15 minutes;
+WAMF stores its hash. Existing valid passwords, API credentials and session
+secrets are preserved. Malformed or unsupported authentication configuration
+fails closed instead of resetting credentials. See
+[Authentication](../administration/authentication.md) for setup and log protection.
+
+The example values above are placeholders, not usable credentials. Use the
+normal bootstrap/setup flow for a new installation rather than copying example
+secrets over a provisioned configuration. Keep the session secret stable across
+restarts and upgrades, including any `WAMF_SECRET_KEY` environment override.
+Use `session_cookie_secure: true` when serving through HTTPS.
 
 The administrator password can subsequently be changed from
 **Admin → Password**.

@@ -4,7 +4,7 @@
 
 No.
 
-In WAMF v0.4.0, Frigate provides object detection and detection events.
+In WAMF v0.4.2, Frigate provides object detection and detection events.
 
 WAMF receives those events and adds wildlife-specific classification,
 observation storage, media archiving, analytics and management.
@@ -15,18 +15,21 @@ observation storage, media archiving, analytics and management.
 
 Not in the current release.
 
-WAMF v0.4.0 uses detection events provided by Frigate. WAMF then performs
+WAMF v0.4.2 uses detection events provided by Frigate. WAMF then performs
 additional wildlife classification on those detections.
 
 ---
 
 ## Does WAMF require an Internet connection?
 
-WAMF's core detection processing and local web interface can operate on your
-local network without an Internet connection.
+Core detection processing can operate on the local network without Internet
+access. Retrieving species metadata requires Internet access.
 
-Some optional functionality, such as retrieving species metadata, requires
-Internet access.
+In v0.4.2, the Monaco configuration editor and its workers are served locally.
+Bootstrap and jQuery still load from external CDNs, so a fully functioning web
+interface should not be assumed on a disconnected browser. Their integrity checks
+verify content; they do not make the CDNs available offline. See
+[Security](security.md#browser-assets).
 
 ---
 
@@ -45,7 +48,7 @@ See the [Configuration Reference](configuration.md) for details.
 
 ## Can WAMF identify animals other than birds?
 
-WAMF v0.4.0 is primarily designed for bird monitoring.
+WAMF v0.4.2 is primarily designed for bird monitoring.
 
 Support for additional wildlife is planned for future development.
 
@@ -87,6 +90,7 @@ See [Backups](../deployment/backups.md) for the complete backup procedure.
 
 Check that:
 
+- Administrator setup has completed; operational workers pause until it succeeds.
 - Frigate is running and accessible from WAMF.
 - MQTT is configured correctly.
 - WAMF is connected to the MQTT broker.
@@ -96,6 +100,34 @@ Check that:
 
 The **Admin Dashboard** and **System Logs** can provide additional information
 about Frigate, MQTT and processing problems.
+
+---
+
+## Why has my setup link stopped working?
+
+The first-run link expires after 15 minutes and can be used once. Restarting
+while setup is pending invalidates the old link and prints a new one in the
+startup logs. Refreshing the page cannot renew it. An already provisioned
+installation receives no setup link and should use its existing password.
+
+Keep the link private and use HTTPS or a trusted tunnel for remote setup.
+See [Authentication](../administration/authentication.md).
+
+---
+
+## Why are several users affected by login throttling?
+
+Clients behind the same reverse proxy or NAT share the connection peer seen by
+WAMF and therefore its login-failure bucket. Forwarding headers do not override
+this identity. See [Login throttling](../administration/authentication.md#login-throttling).
+
+---
+
+## Is WAMF v0.4.2 free of known vulnerabilities?
+
+No. It fixes specific security issues but retains documented compatibility and
+deployment risks, including the protobuf deferral. See
+[Security](security.md) for the scope and operational conditions.
 
 ---
 

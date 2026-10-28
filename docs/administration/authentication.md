@@ -58,6 +58,19 @@ To change the password:
 The current password must be known before it can be changed through the
 administration interface.
 
+## Login Throttling
+
+Login throttling uses the actual connection peer and ignores `X-Forwarded-For`,
+`Forwarded` and `X-Real-IP`. Clients behind the same reverse proxy or NAT
+therefore share its five-failure, five-minute login bucket. WAMF does not
+currently configure trusted-proxy address parsing; `public_base_url` only
+controls the printed setup link.
+
+Concurrent attempts count towards the limit. Completed failures expire five
+minutes after verification finishes. Throttling state is held in memory and
+cleared when the web process restarts. See
+[Security](../reference/security.md) for the release's fixes and retained risks.
+
 ## API Token
 
 WAMF can use token authentication to protect API access.

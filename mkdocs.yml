@@ -24,6 +24,8 @@ extra_css:
   
 nav:
   - Home: index.md
+  - Releases:
+      - v0.4.2: releases/0.4.2.md
   - Getting Started:
       - What is WAMF?: getting-started/what-is-wamf.md
       - Installation: getting-started/installation.md
@@ -56,6 +58,7 @@ nav:
       - Configuration: reference/configuration.md
       - REST API: reference/rest-api.md
       - FAQ: reference/faq.md
+      - Security: reference/security.md
 
 markdown_extensions:
   - admonition
