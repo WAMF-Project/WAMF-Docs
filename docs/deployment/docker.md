@@ -1,11 +1,11 @@
 # Docker
 
-Docker is the recommended way to run WAMF v0.4.0.
+Docker is the recommended way to run WAMF v0.4.2.
 
 The official WAMF container image is published on the GitHub Container Registry:
 
 ```text
-ghcr.io/wamf-project/wamf:0.4.0
+ghcr.io/wamf-project/wamf:0.4.2
 ```
 
 WAMF stores its configuration, database and archived media outside the container so that they persist when the container is updated or recreated.
@@ -14,7 +14,7 @@ WAMF stores its configuration, database and archived media outside the container
 
 Before installing WAMF, ensure that you have:
 
-- A Linux host with Docker installed.
+- An AMD64 (x86-64) Linux host with Docker installed.
 - A working Frigate installation.
 - An MQTT broker accessible to both Frigate and WAMF.
 - Network access from WAMF to the Frigate HTTP API.
@@ -46,7 +46,7 @@ Create a `docker-compose.yml` file in the WAMF directory:
 ```yaml
 services:
   wamf:
-    image: ghcr.io/wamf-project/wamf:0.4.0
+    image: ghcr.io/wamf-project/wamf:0.4.2
     container_name: wamf
     restart: unless-stopped
 
@@ -61,6 +61,12 @@ services:
       - ./data:/app/data
       - ./media:/app/media
 ```
+
+!!! warning "Mount a writable configuration directory"
+    Mount the entire `config/` directory, as shown above. Configuration saves
+    use locked, atomic replacement; read-only configurations and single-file
+    bind mounts cannot support this and fail safely. The container must also
+    be able to write to its database and media directories.
 
 Change the `TZ` value if required for your location.
 
@@ -92,19 +98,40 @@ Open the WAMF web interface:
 http://<wamf-host>:7767
 ```
 
-If valid administrator credentials do not already exist, WAMF generates an initial administrator password during bootstrap.
-
-The temporary password is displayed in the container logs.
-
-Retrieve it with:
+On a fresh installation with administrator authentication enabled, WAMF prints a
+private, single-use `/setup#token=...` link to the startup logs:
 
 ```bash
 docker compose logs wamf
 ```
 
-Sign in using the generated password and change it after logging in.
+Open the link within **15 minutes**, choose and confirm a password of at least
+eight characters, then sign in through the normal login page. JavaScript must
+be enabled. WAMF no longer prints a temporary administrator password.
 
-A new installation starts in setup mode until the required Frigate and MQTT settings have been configured.
+If setup expires, restart WAMF to obtain a new link. Restarting while setup is
+pending invalidates the previous link; opening or refreshing the page does not
+renew it.
+
+!!! warning "Keep the setup link private"
+    Anyone with the unused link and network access can set the administrator
+    password. Restrict startup and centralized logs to trusted administrators,
+    disable proxy request-body capture for setup, and use HTTPS or a trusted
+    tunnel for remote password setup.
+
+The printed link uses a loopback address by default. For access from another
+machine, replace its host and published port with those of your WAMF deployment,
+while retaining the `/setup#token=...` portion. The loopback address is not an
+access control. An optional `webui.public_base_url` can supply the external
+origin; see [Authentication](../administration/authentication.md).
+
+Existing valid administrator passwords, API credentials and session secrets are
+preserved. Provisioned installations receive no setup link. Malformed
+authentication configuration stops startup rather than resetting credentials.
+
+Operational workers pause until administrator setup succeeds. They start
+automatically when setup completes if Frigate configuration is ready; otherwise
+complete the Frigate/MQTT configuration and use **Save & Restart**.
 
 Continue with the [Quick Start](../getting-started/quick-start.md) guide to connect WAMF to Frigate.
 
@@ -133,7 +160,7 @@ Example:
 ```yaml
 services:
   wamf:
-    image: ghcr.io/wamf-project/wamf:0.4.0
+    image: ghcr.io/wamf-project/wamf:0.4.2
     container_name: wamf
     restart: unless-stopped
 
@@ -161,11 +188,15 @@ The same first-start setup process applies to both Docker Compose and Portainer 
 
 ## File Ownership
 
-WAMF v0.4.0 currently runs as root inside the container.
+WAMF v0.4.2 currently runs as root inside the container.
 
 Files created in bind-mounted `config`, `data` and `media` directories may therefore appear as owned by `root` on the Docker host.
 
-This is expected behaviour in v0.4.0.
+This is expected behaviour in v0.4.2.
+
+Generated configuration files use mode `0600`. Reading or editing them on the
+host may require elevated permissions. If using a custom container UID, grant
+that user write access to all three mounted directories.
 
 Take file ownership and permissions into account when manually editing, copying or backing up these directories.
 
