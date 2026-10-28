@@ -1,6 +1,6 @@
 # Quick Start
 
-This guide covers the minimum steps required to connect a new WAMF v0.4.0 installation to Frigate and begin recording bird observations.
+This guide covers the minimum steps required to connect a new WAMF v0.4.2 installation to Frigate and begin recording bird observations.
 
 Before continuing:
 
@@ -13,7 +13,7 @@ See [Installation](installation.md) if WAMF has not yet been installed.
 
 ## 1. Check Frigate
 
-WAMF v0.4.0 receives detection events from Frigate over MQTT and retrieves associated media through the Frigate HTTP API.
+WAMF v0.4.2 receives detection events from Frigate over MQTT and retrieves associated media through the Frigate HTTP API.
 
 Confirm that:
 
@@ -38,17 +38,40 @@ http://<wamf-host>:7767
 
 For a new installation, WAMF automatically creates the files required for initial configuration.
 
-If valid administrator credentials do not already exist, WAMF generates an initial administrator password during bootstrap.
-
-For a Docker installation, the temporary password can be found in the container logs:
+On a fresh installation with administrator authentication enabled, WAMF prints a
+private, single-use `/setup#token=...` link to the startup logs:
 
 ```bash
 docker compose logs wamf
 ```
 
-Sign in using the generated administrator password.
+Open the link within **15 minutes**, choose and confirm a password of at least
+eight characters, then sign in through the normal login page. JavaScript must
+be enabled. WAMF no longer prints a temporary administrator password.
 
-Change the temporary password after logging in.
+If setup expires, restart WAMF to obtain a new link. Restarting while setup is
+pending invalidates the previous link; opening or refreshing the page does not
+renew it.
+
+!!! warning "Keep the setup link private"
+    Anyone with the unused link and network access can set the administrator
+    password. Restrict startup and centralized logs to trusted administrators,
+    disable proxy request-body capture for setup, and use HTTPS or a trusted
+    tunnel for remote password setup.
+
+The printed link uses a loopback address by default. For access from another
+machine, replace its host and published port with those of your WAMF deployment,
+while retaining the `/setup#token=...` portion. The loopback address is not an
+access control. An optional `webui.public_base_url` can supply the external
+origin; see [Authentication](../administration/authentication.md).
+
+Existing valid administrator passwords, API credentials and session secrets are
+preserved. Provisioned installations receive no setup link. Malformed
+authentication configuration stops startup rather than resetting credentials.
+
+Operational workers pause until administrator setup succeeds. They start
+automatically when setup completes if Frigate configuration is ready; otherwise
+complete the Frigate/MQTT configuration and use **Save & Restart**.
 
 ## 3. Configure Frigate and MQTT
 

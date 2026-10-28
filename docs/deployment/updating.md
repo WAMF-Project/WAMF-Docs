@@ -2,7 +2,35 @@
 
 WAMF Docker releases are published as versioned images on the GitHub Container Registry.
 
-Before updating, back up your WAMF configuration and data.
+The current maintenance release is **v0.4.2**, for AMD64 (x86-64) deployments.
+See the [v0.4.2 release notes](https://github.com/WAMF-Project/WAMF/blob/v0.4.2/docs/release-0.4.2.md)
+for changes and retained security limitations.
+
+## Upgrading v0.4.0 or v0.4.1 to v0.4.2
+
+Existing provisioned installations with valid credentials require no
+configuration, database or media migration and no credential reset.
+
+1. Stop WAMF cleanly before taking a backup, for example with
+   `docker compose stop wamf`.
+2. Back up the complete `config/`, `data/` and `media/` directories together.
+3. Keep the previous image locally available for rollback; do not prune it
+   before verifying the upgrade.
+4. Preserve the existing mounts, port mappings and `WAMF_SECRET_KEY` environment
+   value, if set. Retain any additional `/data` or `/media` compatibility mounts
+   already used by an older installation.
+5. Set the image to `ghcr.io/wamf-project/wamf:0.4.2`, then pull and recreate it
+   using the instructions below.
+
+Mount the entire writable configuration directory. Single-file and read-only
+configuration mounts cannot support atomic configuration replacement.
+
+Valid administrator passwords, API credentials and session secrets are preserved.
+Malformed or unsupported authentication configuration stops startup rather than
+resetting credentials. Only a genuinely unprovisioned installation receives a
+first-run setup link; see [Authentication](../administration/authentication.md).
+
+Before updating, back up your WAMF configuration, database and media.
 
 See [Backup & Restore](backups.md) for the recommended backup procedure.
 
@@ -44,13 +72,11 @@ For the most consistent database backup, stop WAMF before copying these director
 
 Edit your Docker Compose or Portainer stack and change the WAMF image tag to the version you want to install.
 
-For example:
+For this upgrade, set:
 
 ```yaml
-image: ghcr.io/wamf-project/wamf:0.4.0
+image: ghcr.io/wamf-project/wamf:0.4.2
 ```
-
-should be changed to the new version when one is released.
 
 Using an explicit version tag is recommended because it makes upgrades deliberate and makes it clear which WAMF release is running.
 
@@ -105,10 +131,16 @@ After updating:
 5. Confirm that WAMF can communicate with Frigate.
 6. Verify that existing observations and archived media are still available.
 7. Test or wait for a new bird detection and confirm that it is processed successfully.
+8. Confirm that the existing administrator login and API token still work.
+9. Restart or recreate the container and verify that credentials, observations
+   and archived media persist.
 
 ## Rollback
 
 If an update causes a problem, stop WAMF and restore the backup made before the update if required.
+
+Use the same mounts, port mappings and session-secret environment value.
+Never run the old and new containers as simultaneous writers to the database.
 
 Change the image tag back to the previous version.
 
@@ -136,7 +168,7 @@ WAMF releases use versioned container tags.
 For example:
 
 ```text
-ghcr.io/wamf-project/wamf:0.4.0
+ghcr.io/wamf-project/wamf:0.4.2
 ```
 
 The `latest` tag may also be available, but explicit version tags are recommended for production deployments.

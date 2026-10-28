@@ -2,7 +2,7 @@
 
 WAMF can be deployed using Docker or installed directly on a Linux host.
 
-For WAMF v0.4.0, Docker is the recommended deployment method for most users.
+For WAMF v0.4.2, Docker is the recommended deployment method for most users.
 
 ## Supported Deployment Methods
 
@@ -19,10 +19,10 @@ Benefits include:
 - Suitable for home servers, virtual machines and dedicated hosts
 - Compatible with Docker Compose and Portainer
 
-The official WAMF v0.4.0 image is available from the GitHub Container Registry:
+The official WAMF v0.4.2 image is available from the GitHub Container Registry:
 
 ```text
-ghcr.io/wamf-project/wamf:0.4.0
+ghcr.io/wamf-project/wamf:0.4.2
 ```
 
 See the [Docker Deployment](../deployment/docker.md) guide for installation instructions.
@@ -31,7 +31,7 @@ See the [Docker Deployment](../deployment/docker.md) guide for installation inst
 
 Native installation is intended primarily for development, testing and advanced users who want direct control over the WAMF runtime environment.
 
-A native WAMF v0.4.0 installation requires **Python 3.11**.
+A native WAMF v0.4.2 installation requires **Python 3.11**.
 
 Native installation provides:
 
@@ -44,9 +44,9 @@ Docker is recommended for normal deployments unless you specifically require a n
 
 ## System Requirements
 
-WAMF v0.4.0 requires:
+WAMF v0.4.2 requires:
 
-- A Linux operating system
+- An AMD64 (x86-64) Linux host for the supported container deployment
 - A multi-core processor
 - Sufficient storage for the WAMF database, snapshots and clips
 - Network connectivity to Frigate and MQTT
@@ -56,9 +56,9 @@ WAMF v0.4.0 requires:
 
 For native installations, Python 3.11 is required.
 
-## WAMF v0.4.0 Dependencies
+## WAMF v0.4.2 Dependencies
 
-WAMF v0.4.0 uses Frigate as its detection source.
+WAMF v0.4.2 uses Frigate as its detection source.
 
 Before installing WAMF, ensure you have:
 
@@ -75,7 +75,7 @@ Support for additional detection sources is planned for future WAMF releases.
 
 ## Frigate Compatibility
 
-WAMF v0.4.0 has been validated with:
+The v0.4.0 compatibility baseline was validated with:
 
 - Frigate 0.17.2
 - Frigate 0.18.0
