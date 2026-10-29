@@ -1,6 +1,6 @@
 # WAMF-Docs
 
-Documentation for WAMF (Who's At My Feeder).
+Documentation for WAMF (Wildlife Activity Monitoring Framework).
 
 This repository contains installation guides, deployment documentation, configuration references, administration guides, API documentation, and development notes.
 
