@@ -3,7 +3,7 @@
 WAMF provides a small REST API that can be used by external applications
 and dashboards.
 
-WAMF v0.4.0 provides endpoints for accessing recent detection information
+WAMF v0.4.3 provides endpoints for accessing recent detection information
 and system health.
 
 ## Base URL
