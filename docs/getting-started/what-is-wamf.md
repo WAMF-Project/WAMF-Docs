@@ -6,13 +6,13 @@ It is an open-source platform designed to receive wildlife detections from camer
 
 WAMF is designed for self-hosted environments such as home labs, wildlife monitoring systems and dedicated observation stations.
 
-## WAMF v0.4.2
+## WAMF v0.4.3
 
-WAMF v0.4.2 is the current released version.
+WAMF v0.4.3 is the current released version.
 
 This maintenance release improves security and first-run setup while retaining
 Python 3.11, the CPU TFLite classifier and AMD64 deployment scope. See the
-[release notes](../releases/0.4.2.md) and
+[release notes](../releases/0.4.3.md) and
 [upgrade guide](../deployment/updating.md).
 
 In this release, Frigate provides the object detection layer.
@@ -43,7 +43,7 @@ The resulting observation is stored in the WAMF database together with its assoc
 
 ## What WAMF Provides
 
-WAMF v0.4.2 provides:
+WAMF v0.4.3 provides:
 
 - Bird detection event processing
 - AI-powered species classification
@@ -71,7 +71,7 @@ The Frigate installation may use any detector supported by Frigate and suitable 
 
 ## Deployment
 
-Docker is the recommended deployment method for WAMF v0.4.2.
+Docker is the recommended deployment method for WAMF v0.4.3.
 
 The official container image is published through the GitHub Container Registry.
 
@@ -79,8 +79,9 @@ See [Installation](installation.md) for deployment options or go directly to [Do
 
 ## Future Development
 
-WAMF is under active development.
+WAMF is under active development. Kingfisher v0.5.0 remains under development
+and is not the current stable release.
 
 Future releases are intended to expand the platform beyond the current Frigate-based detection pipeline and provide greater flexibility for wildlife monitoring systems.
 
-Features described as future development are not part of WAMF v0.4.2 unless specifically documented as such.
+Features described as future development are not part of WAMF v0.4.3 unless specifically documented as such.

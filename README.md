@@ -1,22 +1,25 @@
 # WAMF-Docs
 
-Documentation for WAMF (Wildlife Activity Monitoring Framework).
+Public documentation for WAMF (Wildlife Activity Monitoring Framework).
 
-This repository contains installation guides, deployment documentation, configuration references, administration guides, API documentation, and development notes.
+The site covers installation, Docker deployment, configuration, administration,
+API usage, security, backups and troubleshooting for stable WAMF v0.4.3.
+Historical release pages retain their original version and validation scope.
+Kingfisher v0.5.0 remains under development.
 
-## Planned Documentation
+- [Documentation home](docs/index.md)
+- [Installation](docs/getting-started/installation.md)
+- [Docker deployment](docs/deployment/docker.md)
+- [Configuration reference](docs/reference/configuration.md)
+- [Administration](docs/administration/overview.md)
+- [API reference](docs/reference/rest-api.md)
+- [Troubleshooting](docs/reference/faq.md)
+- [Project structure](docs/developer-guide/project-structure.md)
+- [Application repository](https://github.com/WAMF-Project/WAMF)
+- [Public documentation](https://docs.wamf.uk)
 
-* Installation Guide
-* Docker Deployment Guide
-* Configuration Guide
-* Administration Guide
-* API Documentation
-* Architecture Documentation
-* Troubleshooting Guide
+## Build locally
 
-## Related Repositories
-
-* WAMF
-* WAMF-QA
-
-WAMF is a self-hosted wildlife monitoring and species tracking platform powered by Frigate, MQTT and AI classification.
+Install the pinned documentation dependencies from `requirements.txt` in a
+Python virtual environment, then run `mkdocs build --strict`.
+Use `mkdocs serve` to preview locally.

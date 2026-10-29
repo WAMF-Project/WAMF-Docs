@@ -121,7 +121,7 @@ After restoring a backup:
 
 ## File Ownership
 
-WAMF v0.4.0 currently runs as root inside the Docker container.
+WAMF v0.4.3 runs as root inside the Docker container.
 
 Files created in bind-mounted `config`, `data` and `media` directories may therefore be owned by `root` on the Docker host.
 

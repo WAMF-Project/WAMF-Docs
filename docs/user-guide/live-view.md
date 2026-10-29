@@ -32,6 +32,8 @@ live_view:
 ```
 
 Set `url` to the web-compatible live stream that you want WAMF to display.
+If `camera.live_view_url` is present, it takes precedence, even when empty.
+Use one setting consistently; see the [Configuration Reference](../reference/configuration.md#live-view).
 
 For example, the stream may be provided by go2rtc or another service capable
 of supplying a stream suitable for playback in a web browser.

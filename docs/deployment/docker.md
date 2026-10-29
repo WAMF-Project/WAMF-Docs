@@ -1,11 +1,11 @@
 # Docker
 
-Docker is the recommended way to run WAMF v0.4.2.
+Docker is the recommended way to run WAMF v0.4.3.
 
 The official WAMF container image is published on the GitHub Container Registry:
 
 ```text
-ghcr.io/wamf-project/wamf:0.4.2
+ghcr.io/wamf-project/wamf:0.4.3
 ```
 
 WAMF stores its configuration, database and archived media outside the container so that they persist when the container is updated or recreated.
@@ -46,7 +46,7 @@ Create a `docker-compose.yml` file in the WAMF directory:
 ```yaml
 services:
   wamf:
-    image: ghcr.io/wamf-project/wamf:0.4.2
+    image: ghcr.io/wamf-project/wamf:0.4.3
     container_name: wamf
     restart: unless-stopped
 
@@ -160,7 +160,7 @@ Example:
 ```yaml
 services:
   wamf:
-    image: ghcr.io/wamf-project/wamf:0.4.2
+    image: ghcr.io/wamf-project/wamf:0.4.3
     container_name: wamf
     restart: unless-stopped
 
@@ -188,11 +188,11 @@ The same first-start setup process applies to both Docker Compose and Portainer 
 
 ## File Ownership
 
-WAMF v0.4.2 currently runs as root inside the container.
+WAMF v0.4.3 currently runs as root inside the container.
 
 Files created in bind-mounted `config`, `data` and `media` directories may therefore appear as owned by `root` on the Docker host.
 
-This is expected behaviour in v0.4.2.
+This is expected behaviour in v0.4.3.
 
 Generated configuration files use mode `0600`. Reading or editing them on the
 host may require elevated permissions. If using a custom container UID, grant

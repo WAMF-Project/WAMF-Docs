@@ -2,7 +2,7 @@
 
 WAMF can be deployed using Docker or installed directly on a Linux host.
 
-For WAMF v0.4.2, Docker is the recommended deployment method for most users.
+For WAMF v0.4.3, Docker is the recommended deployment method for most users.
 
 ## Supported Deployment Methods
 
@@ -19,10 +19,10 @@ Benefits include:
 - Suitable for home servers, virtual machines and dedicated hosts
 - Compatible with Docker Compose and Portainer
 
-The official WAMF v0.4.2 image is available from the GitHub Container Registry:
+The official WAMF v0.4.3 image is available from the GitHub Container Registry:
 
 ```text
-ghcr.io/wamf-project/wamf:0.4.2
+ghcr.io/wamf-project/wamf:0.4.3
 ```
 
 See the [Docker Deployment](../deployment/docker.md) guide for installation instructions.
@@ -31,7 +31,7 @@ See the [Docker Deployment](../deployment/docker.md) guide for installation inst
 
 Native installation is intended primarily for development, testing and advanced users who want direct control over the WAMF runtime environment.
 
-A native WAMF v0.4.2 installation requires **Python 3.11**.
+A native WAMF v0.4.3 installation requires **Python 3.11**.
 
 Native installation provides:
 
@@ -44,21 +44,23 @@ Docker is recommended for normal deployments unless you specifically require a n
 
 ## System Requirements
 
-WAMF v0.4.2 requires:
+WAMF v0.4.3 requires:
 
 - An AMD64 (x86-64) Linux host for the supported container deployment
-- A multi-core processor
+- CPU capacity appropriate to the workload; WAMF classification runs on the CPU
 - Sufficient storage for the WAMF database, snapshots and clips
 - Network connectivity to Frigate and MQTT
 - Docker for the recommended container deployment
 
-8 GB RAM is recommended, although actual memory requirements depend on the host workload and other services running alongside WAMF.
+A multi-core host and 8 GB RAM are provisional host-sizing suggestions, not
+measured WAMF minimum requirements. Actual needs depend on workload and other
+services. A validated minimum CPU/RAM specification has not been established.
 
 For native installations, Python 3.11 is required.
 
-## WAMF v0.4.2 Dependencies
+## WAMF v0.4.3 Dependencies
 
-WAMF v0.4.2 uses Frigate as its detection source.
+WAMF v0.4.3 uses Frigate as its detection source.
 
 Before installing WAMF, ensure you have:
 

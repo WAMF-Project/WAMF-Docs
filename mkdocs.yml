@@ -2,8 +2,8 @@ site_name: WAMF Documentation
 site_description: Documentation for the Wildlife Activity Monitoring Framework
 site_url: https://docs.wamf.uk
 
-repo_name: WAMF-Project/WAMF
-repo_url: https://github.com/WAMF-Project/WAMF
+repo_name: WAMF-Project/WAMF-Docs
+repo_url: https://github.com/WAMF-Project/WAMF-Docs
 
 theme:
   name: material
@@ -25,6 +25,7 @@ extra_css:
 nav:
   - Home: index.md
   - Releases:
+      - v0.4.3: releases/0.4.3.md
       - v0.4.2: releases/0.4.2.md
   - Getting Started:
       - What is WAMF?: getting-started/what-is-wamf.md

@@ -1,11 +1,19 @@
-# Security in WAMF v0.4.2
+# Security in WAMF v0.4.3
 
-v0.4.2 fixes specific security issues while retaining documented compatibility
-and deployment risks. It is not a vulnerability-free release. This page
+v0.4.3 fixes embedded-navigation URL handling and carries forward v0.4.2 security
+fixes while retaining documented compatibility and deployment risks. It is not a vulnerability-free release. This page
 summarizes the release-specific records; it does not certify every deployed
 image or native environment.
 
 ## Security Fixes
+
+- **Embedded navigation (v0.4.3):** link destinations are parsed using the browser
+  URL API and restricted to HTTP/HTTPS. Unsafe or malformed destinations are
+  removed. Internal links, fragments, external HTTP/HTTPS links and Home Assistant
+  `embed=ha` navigation are preserved. See the
+  [tagged implementation](https://github.com/WAMF-Project/WAMF/blob/v0.4.3/templates/base.html#L158).
+
+The following fixes were introduced in v0.4.2 and remain in v0.4.3:
 
 - **Detection rendering and event identifiers (F-001):** detection values are
   treated as DOM/text data rather than executable HTML or inline handlers.
@@ -39,7 +47,8 @@ The release retains protobuf 3.20.3 and the documented deferral for
 CVE-2025-4565 and CVE-2026-0994. TFLite Support 0.4.4 requires protobuf below 4,
 so an isolated major protobuf upgrade is not included.
 
-The trusted bundled-model boundary does not remove these vulnerabilities.
+The published v0.4.3 release records these alerts as dismissed for accepted
+risk, not patched. The trusted bundled-model boundary does not remove these vulnerabilities.
 See the [compatibility decision and limitations](https://github.com/WAMF-Project/WAMF/blob/v0.4.2/docs/release-0.4.1.md#known-security-limitations).
 
 ## Local Packaging Tools (F-006)
@@ -99,11 +108,19 @@ mode-0600 atomic replacement; see [Docker](../deployment/docker.md).
 
 Historical image findings and measurements belong to their recorded builds.
 Source-test success and a working deployment do not establish that the
-published image has no vulnerabilities. The tagged v0.4.2 release record still
-contains outstanding image-verification conditions; no completed new image
-scan is asserted here.
+published image has no vulnerabilities. The v0.4.3 release records a successful
+AMD64 build and isolated smoke test, which did not exercise live Frigate/MQTT.
+The successful publishing workflow included a CRITICAL-only Trivy gate with
+`ignore-unfixed: true`; it does not establish absence of lower-severity or
+unfixed vulnerabilities. The isolated smoke test did not establish a separate
+comprehensive image-security scan. Historical v0.4.2 preparation conditions
+remain historical records, not the current v0.4.3 publication status.
 
 ## Release and Upgrade Records
+
+- [v0.4.3 release summary](../releases/0.4.3.md)
+- [Published v0.4.3 release](https://github.com/WAMF-Project/WAMF/releases/tag/v0.4.3)
+- [Successful v0.4.3 publishing run](https://github.com/WAMF-Project/WAMF/actions/runs/40775804843)
 
 - [v0.4.2 release summary](../releases/0.4.2.md)
 - [Updating WAMF](../deployment/updating.md)
