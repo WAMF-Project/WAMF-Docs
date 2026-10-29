@@ -4,7 +4,7 @@
 
 No.
 
-In WAMF v0.4.2, Frigate provides object detection and detection events.
+In WAMF v0.4.3, Frigate provides object detection and detection events.
 
 WAMF receives those events and adds wildlife-specific classification,
 observation storage, media archiving, analytics and management.
@@ -15,7 +15,7 @@ observation storage, media archiving, analytics and management.
 
 Not in the current release.
 
-WAMF v0.4.2 uses detection events provided by Frigate. WAMF then performs
+WAMF v0.4.3 uses detection events provided by Frigate. WAMF then performs
 additional wildlife classification on those detections.
 
 ---
@@ -25,7 +25,7 @@ additional wildlife classification on those detections.
 Core detection processing can operate on the local network without Internet
 access. Retrieving species metadata requires Internet access.
 
-In v0.4.2, the Monaco configuration editor and its workers are served locally.
+In v0.4.3, the Monaco configuration editor and its workers are served locally.
 Bootstrap and jQuery still load from external CDNs, so a fully functioning web
 interface should not be assumed on a disconnected browser. Their integrity checks
 verify content; they do not make the CDNs available offline. See
@@ -48,7 +48,7 @@ See the [Configuration Reference](configuration.md) for details.
 
 ## Can WAMF identify animals other than birds?
 
-WAMF v0.4.2 is primarily designed for bird monitoring.
+WAMF v0.4.3 is primarily designed for bird monitoring.
 
 Support for additional wildlife is planned for future development.
 
@@ -98,6 +98,9 @@ Check that:
 - Frigate is detecting the configured object type.
 - WAMF can access the Frigate HTTP API.
 
+Wait for `MQTT event subscription ready` before testing a new live event.
+See the [Quick Start troubleshooting steps](../getting-started/quick-start.md#troubleshooting).
+
 The **Admin Dashboard** and **System Logs** can provide additional information
 about Frigate, MQTT and processing problems.
 
@@ -123,7 +126,7 @@ this identity. See [Login throttling](../administration/authentication.md#login-
 
 ---
 
-## Is WAMF v0.4.2 free of known vulnerabilities?
+## Is WAMF v0.4.3 free of known vulnerabilities?
 
 No. It fixes specific security issues but retains documented compatibility and
 deployment risks, including the protobuf deferral. See

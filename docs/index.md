@@ -6,13 +6,13 @@ WAMF is an open-source platform for monitoring, identifying and recording wildli
 
 !!! info "Current Release"
 
-    The current release is **WAMF v0.4.2**.
+    The current release is **WAMF v0.4.3**.
 
-    WAMF v0.4.2 provides a stable Frigate-based detection pipeline, species classification, observation storage, archived media and a web-based administration interface.
+    WAMF v0.4.3 provides a stable Frigate-based detection pipeline, species classification, observation storage, archived media and a web-based administration interface.
 
-    Docker is the recommended deployment method for v0.4.2.
+    Docker is the recommended deployment method for v0.4.3.
 
-Read the [v0.4.2 release notes](releases/0.4.2.md) for the security and setup
+Read the [v0.4.3 release notes](releases/0.4.3.md) for the security and setup
 changes, [upgrade instructions](deployment/updating.md) for existing
 installations, and [security guidance](reference/security.md) for retained risks.
 
@@ -30,7 +30,7 @@ installations, and [security guidance](reference/security.md) for retained risks
 
 ## How WAMF Works
 
-WAMF v0.4.2 uses Frigate as its detection source.
+WAMF v0.4.3 uses Frigate as its detection source.
 
 When Frigate detects a bird, it publishes the event over MQTT. WAMF receives the event, retrieves the associated media from Frigate, performs species classification and stores the resulting observation.
 

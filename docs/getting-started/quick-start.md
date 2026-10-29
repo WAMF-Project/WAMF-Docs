@@ -1,6 +1,6 @@
 # Quick Start
 
-This guide covers the minimum steps required to connect a new WAMF v0.4.2 installation to Frigate and begin recording bird observations.
+This guide covers the minimum steps required to connect a new WAMF v0.4.3 installation to Frigate and begin recording bird observations.
 
 Before continuing:
 
@@ -13,7 +13,7 @@ See [Installation](installation.md) if WAMF has not yet been installed.
 
 ## 1. Check Frigate
 
-WAMF v0.4.2 receives detection events from Frigate over MQTT and retrieves associated media through the Frigate HTTP API.
+WAMF v0.4.3 receives detection events from Frigate over MQTT and retrieves associated media through the Frigate HTTP API.
 
 Confirm that:
 
@@ -138,6 +138,9 @@ If WAMF cannot communicate with Frigate or MQTT, recheck:
 
 ## 6. Test a Detection
 
+Wait for `MQTT event subscription ready` in the logs before testing. Retained
+MQTT deliveries are skipped; use a new live event after subscription is ready.
+
 Trigger or wait for a bird detection on the Frigate camera configured in WAMF.
 
 For a successful detection, WAMF should:
@@ -182,4 +185,5 @@ For Docker installations, check the WAMF logs with:
 docker compose logs -f wamf
 ```
 
-See the full [Configuration](../reference/configuration.md) guide for configuration details.
+See the [FAQ troubleshooting checklist](../reference/faq.md#why-are-no-observations-appearing)
+and the full [Configuration](../reference/configuration.md) guide for configuration details.

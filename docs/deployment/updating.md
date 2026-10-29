@@ -2,11 +2,33 @@
 
 WAMF Docker releases are published as versioned images on the GitHub Container Registry.
 
-The current maintenance release is **v0.4.2**, for AMD64 (x86-64) deployments.
-See the [v0.4.2 release notes](https://github.com/WAMF-Project/WAMF/blob/v0.4.2/docs/release-0.4.2.md)
+The current stable release is **v0.4.3**, for AMD64 (x86-64) deployments.
+See the [v0.4.3 release notes](../releases/0.4.3.md)
 for changes and retained security limitations.
 
-## Upgrading v0.4.0 or v0.4.1 to v0.4.2
+## Upgrading v0.4.2 to v0.4.3
+
+No configuration, database or media migration is introduced. Existing valid
+credentials and session secrets are preserved.
+
+1. Stop WAMF cleanly: `docker compose stop wamf`.
+2. Back up `config/`, `data/` and `media/` together.
+3. Retain the previous image locally for rollback.
+4. Preserve mounts, ports, credentials and `WAMF_SECRET_KEY`, if set.
+5. Set the service image to `ghcr.io/wamf-project/wamf:0.4.3`.
+6. Pull and recreate it using the Docker Compose or Portainer steps below.
+
+After upgrading, verify login, API access, archived media, MQTT detection and
+restart persistence. Also check internal links, date selection, browser
+back/forward and Home Assistant embedded navigation. For rollback, stop the
+upgraded container and select the previous `0.4.2` image using the same mounts
+and session-secret setting. Never run both versions as database writers.
+Restore the corresponding pre-upgrade backup if needed.
+
+## Historical upgrade: v0.4.0 or v0.4.1 to v0.4.2
+
+The following section preserves the older upgrade path. For the current stable
+release, follow the v0.4.3 procedure above.
 
 Existing provisioned installations with valid credentials require no
 configuration, database or media migration and no credential reset.
@@ -72,10 +94,10 @@ For the most consistent database backup, stop WAMF before copying these director
 
 Edit your Docker Compose or Portainer stack and change the WAMF image tag to the version you want to install.
 
-For this upgrade, set:
+For the current v0.4.3 upgrade, set:
 
 ```yaml
-image: ghcr.io/wamf-project/wamf:0.4.2
+image: ghcr.io/wamf-project/wamf:0.4.3
 ```
 
 Using an explicit version tag is recommended because it makes upgrades deliberate and makes it clear which WAMF release is running.
@@ -165,12 +187,12 @@ Always check the release notes for version-specific upgrade or rollback instruct
 
 WAMF releases use versioned container tags.
 
-For example:
+For the current stable release:
 
 ```text
-ghcr.io/wamf-project/wamf:0.4.2
+ghcr.io/wamf-project/wamf:0.4.3
 ```
 
-The `latest` tag may also be available, but explicit version tags are recommended for production deployments.
-
-This prevents an installation from changing WAMF versions simply because a newer `latest` image has been published.
+The v0.4.3 publishing workflow does not update `latest`. Select the explicit
+`ghcr.io/wamf-project/wamf:0.4.3` tag for the current stable release; do not assume
+that an existing `latest` image contains this release.
